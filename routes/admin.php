@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\ShowLoginController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Tenant\IndexController as TenantIndex;
 use App\Http\Controllers\Admin\Tenant\CreateController as TenantCreate;
@@ -16,15 +17,9 @@ Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(functio
 });
 
 // Admin domain routes
-Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin-auth')->prefix('admin')->name('admin.')->group(function () {
     // logout route
-    Route::post('logout', function () {
-        Auth::guard('admin')->logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-
-        return redirect()->route('admin.login');
-    })->name('logout');
+    Route::post('logout', LogoutController::class)->name('logout');
 
     // Admin dashboard route
     Route::get('dashboard', DashboardController::class)->name('dashboard');

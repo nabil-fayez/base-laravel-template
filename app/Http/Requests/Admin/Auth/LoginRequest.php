@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests\Admin\Auth;
 
+use App\Http\Requests\PostRequest;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class LoginRequest extends PostRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      */

@@ -2,14 +2,17 @@
 
 namespace App\Http\Requests\Admin\Tenants;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreTenantRequest extends FormRequest
+class StoreTenantRequest extends PostRequest
 {
+    public function __invoke()
+    {
+        $this->isMethod('GET') ?? redirect()->back();
+    }
     public function authorize(): bool
     {
-        // الفحص يعتمد على الـ Gate الموحد الآن
         return Auth::guard('admin')->check() && Auth::guard('admin')->user()->can('tenants.create');
     }
 
