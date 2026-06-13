@@ -8,6 +8,6 @@ class GetRequest extends FormRequest
 {
     public function __invoke()
     {
-        !$this->isMethod('GET') ?? redirect()->back();
+        !$this->isMethod('GET') ? redirect()->back() : null;
     }
 }

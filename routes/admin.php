@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\Tenant\IndexController as TenantIndex;
 use App\Http\Controllers\Admin\Tenant\CreateController as TenantCreate;
 use App\Http\Controllers\Admin\Tenant\StoreController as TenantStore;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 //
 Route::middleware('guest:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -28,6 +27,10 @@ Route::middleware('admin-auth')->prefix('admin')->name('admin.')->group(function
     Route::prefix('tenants')->name('tenants.')->group(function () {
         Route::get('/', TenantIndex::class)->name('index');
         Route::get('/create', TenantCreate::class)->name('create');
-        Route::post('store', TenantStore::class)->name('store');
+        Route::post('/store', TenantStore::class)->name('store');
     });
+});
+
+Route::fallback(function () {
+    return redirect()->back();
 });

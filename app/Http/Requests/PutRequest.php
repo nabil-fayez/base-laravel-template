@@ -8,6 +8,6 @@ class PutRequest extends FormRequest
 {
     public function __invoke()
     {
-        !$this->isMethod('PUT') ?? redirect()->back();
+        !$this->isMethod('PUT') ? redirect()->back() : null;
     }
 }

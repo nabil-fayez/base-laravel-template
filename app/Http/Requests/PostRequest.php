@@ -9,6 +9,6 @@ class PostRequest extends FormRequest
 {
     public function __invoke()
     {
-        !$this->isMethod('POST') ?? redirect()->back();
+        !$this->isMethod('POST') ? redirect()->back() : null;
     }
 }

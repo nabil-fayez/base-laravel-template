@@ -8,6 +8,6 @@ class DeleteRequest extends FormRequest
 {
     public function __invoke()
     {
-        !$this->isMethod('DELETE') ?? redirect()->back();
+        !$this->isMethod('DELETE') ? redirect()->back() : null;
     }
 }

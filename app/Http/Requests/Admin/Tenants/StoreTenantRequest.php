@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreTenantRequest extends PostRequest
 {
-    public function __invoke()
-    {
-        $this->isMethod('GET') ?? redirect()->back();
-    }
     public function authorize(): bool
     {
         return Auth::guard('admin')->check() && Auth::guard('admin')->user()->can('tenants.create');
