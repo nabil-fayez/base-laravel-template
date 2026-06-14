@@ -16,4 +16,4 @@ require __DIR__ . '/admin.php';
 require __DIR__ . '/tenant.php';
 
 // User domain routes
-require __DIR__ . './user.php'
+require __DIR__ . './user.php';
