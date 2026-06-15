@@ -19,7 +19,7 @@ class SuperAdminSeeder extends Seeder
             [
                 'name' => 'Super Controller',
                 'email' => 'super@admin.com',
-                'password' => Hash::make('password'), // كلمة مرور افتراضية للتجريب
+                'password' => Hash::make('password'), 
                 'is_super_admin' => true,
             ]
         );

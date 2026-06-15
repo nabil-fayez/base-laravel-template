@@ -7,21 +7,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tenants', function (Blueprint $table) {
+        Schema::create('tenant_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
             $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->string('owner_id')->nullable()->unique(); // can not be owner for two tenants with the same account. 
+            $table->string('password');
             $table->enum('status', ['active', 'suspended', 'pending'])->default('active');
-
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists('tenant_users');
     }
 };
